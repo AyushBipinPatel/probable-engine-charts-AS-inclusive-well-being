@@ -46,7 +46,13 @@ data_as_inclusicve|>
   )+
   geom_text_repel(aes(label = ISO),
                   max.overlaps = 12)+
-  theme_bw() -> fig_1
+  theme_bw()+
+  theme(
+    axis.title = element_text(colour = "#000000",
+                              size = 18),
+    axis.text = element_text(colour = "#000000",
+                             size = 14)
+  )-> fig_1
 
 ggsave(
   plot = fig_1,
@@ -81,7 +87,13 @@ data_as_inclusicve|>
   )+
   geom_text_repel(aes(label = ISO),
                   max.overlaps = 12)+
-  theme_bw() -> fig_2
+  theme_bw()+
+  theme(
+    axis.title = element_text(colour = "#000000",
+                              size = 18),
+    axis.text = element_text(colour = "#000000",
+                             size = 14)
+  ) -> fig_2
 
 ggsave(
   plot = fig_2,
@@ -117,10 +129,16 @@ data_as_inclusicve|>
   )+
   geom_text_repel(aes(label = ISO),
                   max.overlaps = 16)+
-  theme_bw() -> fig_3
+  theme_bw()+
+  theme(
+    axis.title = element_text(colour = "#000000",
+                              size = 18),
+    axis.text = element_text(colour = "#000000",
+                             size = 14)
+  ) -> fig_3
 
 ggsave(
-  plot = fig_2,
+  plot = fig_3,
   filename = paste0(Sys.Date(),"-figure3-Inclusivity premiums and absolute changes in the MPIs across countries.jpeg"),
   device = "jpeg",
   path = here("charts/"),
@@ -128,3 +146,4 @@ ggsave(
   height = 16,
   units = "in"
 )
+
