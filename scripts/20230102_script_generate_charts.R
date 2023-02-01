@@ -53,7 +53,7 @@ ggsave(
   filename = paste0(Sys.Date(),"-figure1-Change in average attainment and inclusivity premium.jpeg"),
   device = "jpeg",
   path = here("charts/"),
-  width = 16,
+  width = 20,
   height = 16,
   units = "in"
 )
@@ -88,7 +88,7 @@ ggsave(
   filename = paste0(Sys.Date(),"-figure2-Shared prosperity premiums and inclusivity premiums across 25 countries.jpeg"),
   device = "jpeg",
   path = here("charts/"),
-  width = 16,
+  width = 20,
   height = 16,
   units = "in"
 )
@@ -124,7 +124,7 @@ ggsave(
   filename = paste0(Sys.Date(),"-figure3-Inclusivity premiums and absolute changes in the MPIs across countries.jpeg"),
   device = "jpeg",
   path = here("charts/"),
-  width = 16,
+  width = 20,
   height = 16,
   units = "in"
 )
