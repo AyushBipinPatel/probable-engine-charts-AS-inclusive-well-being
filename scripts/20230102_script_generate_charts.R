@@ -23,9 +23,11 @@ data_as_inclusicve <- read_dta(
 data_as_inclusicve|>
   ggplot(aes(d_attain_pa,S_W_Sen_pa))+
   geom_point(
-    alpha = 0.7,
-    size = 4
+    shape = 1,
+    aes(size = population)
   )+
+  guides(size = "none")+
+  scale_size_area(max_size = 25)+
   scale_y_continuous(breaks = seq(-0.25,1,0.25))+
   scale_x_continuous(breaks = seq(-0.3,2.4,0.3))+
   labs(
@@ -33,16 +35,24 @@ data_as_inclusicve|>
     x = "Change in average attainment per annum"
   )+
   geom_smooth(
+    aes(weight = population),
     method = "lm",
     se = F,
-    colour = "#898999",
-    linetype = 2
+    colour = "#898999"
   )+
   geom_smooth(
     method = "lm",
     formula = y ~ x + I(x^2),
     se = F,
-    colour = "#6a6a6a"
+    colour = "#898999",
+    linetype = 2
+  )+
+  geom_smooth(
+    aes(weight = population),
+    method = "lm",
+    formula = y ~ x + I(x^2),
+    se = F,
+    colour = "#000000"
   )+
   geom_text_repel(aes(label = ISO),
                   max.overlaps = 12)+
@@ -69,9 +79,11 @@ ggsave(
 data_as_inclusicve|>
   ggplot(aes(S_W_Sen_pa,inc_shr_pre))+
   geom_point(
-    alpha = 0.7,
-    size = 4
+    shape = 1,
+    aes(size = population)
   )+
+  guides(size = "none")+
+  scale_size_area(max_size = 25)+
   scale_y_continuous(breaks = seq(-2,4,1))+
   scale_x_continuous(breaks = seq(-0.2,1,0.2),
                      limits = c(-0.2,1))+
@@ -80,10 +92,17 @@ data_as_inclusicve|>
     x = "Inclusivity premium per annum"
   )+
   geom_smooth(
+    aes(weight = population),
     method = "lm",
     formula = y ~ x + I(x^2),
     se = F,
-    colour = "#6a6a6a"
+    colour = "#000000"
+  )+
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x + I(x^2),
+    se = F,
+    colour = "#898999"
   )+
   geom_text_repel(aes(label = ISO),
                   max.overlaps = 12)+
@@ -111,9 +130,11 @@ ggsave(
 data_as_inclusicve|>
   ggplot(aes(S_W_Sen_pa,abs_M0_33_pa))+
   geom_point(
-    alpha = 0.7,
-    size = 4
+    shape = 1,
+    aes(size = population)
   )+
+  guides(size = "none")+
+  scale_size_area(max_size = 25)+
   scale_y_continuous(breaks = seq(-0.030,0.005,0.005),
                      limits = c(-0.030,0.005))+
   scale_x_continuous(breaks = seq(-0.25,1,0.25))+
@@ -122,10 +143,17 @@ data_as_inclusicve|>
     x = "Inclusivity premium per annum"
   )+
   geom_smooth(
+    aes(weight = population),
     method = "lm",
     formula = y ~ x + I(x^2),
     se = F,
-    colour = "#6a6a6a"
+    colour = "#000000"
+  )+
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x + I(x^2),
+    se = F,
+    colour = "#898999"
   )+
   geom_text_repel(aes(label = ISO),
                   max.overlaps = 16)+
