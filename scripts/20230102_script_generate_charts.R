@@ -8,8 +8,10 @@ library(here)
 library(haven)
 library(ggrepel)
 library(tidyverse)
-
-
+library(showtext)
+font_add_google(name = "EB Garamond")
+font_add("Garamond","GARA.TTF")
+showtext_auto()
 # load data ---------------------------------------------------------------
 
 data_as_inclusicve <- read_dta(
@@ -112,7 +114,8 @@ data_as_inclusicve|>
     axis.title = element_text(colour = "#000000",
                               size = 18),
     axis.text = element_text(colour = "#000000",
-                             size = 14)
+                             size = 14),
+    text = element_text(family = "EB Garamond")
   ) -> fig_2
 
 ggsave(
@@ -163,7 +166,8 @@ data_as_inclusicve|>
     axis.title = element_text(colour = "#000000",
                               size = 18),
     axis.text = element_text(colour = "#000000",
-                             size = 14)
+                             size = 14),
+    text = element_text(family = "EB Garamond")
   ) -> fig_3
 
 ggsave(
