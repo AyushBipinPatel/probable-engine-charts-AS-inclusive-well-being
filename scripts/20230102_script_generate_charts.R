@@ -61,9 +61,9 @@ data_as_inclusicve|>
   theme_bw()+
   theme(
     axis.title = element_text(colour = "#000000",
-                              size = 18),
+                              size = 22),
     axis.text = element_text(colour = "#000000",
-                             size = 14),
+                             size = 18),
     text = element_text(family = "EB Garamond")
   )-> fig_1
 
@@ -72,8 +72,8 @@ ggsave(
   filename = paste0(Sys.Date(),"-figure1-Change in average attainment and inclusivity premium.jpeg"),
   device = "jpeg",
   path = here("charts/"),
-  width = 12,
-  height = 8,
+  width = 6,
+  height = 4,
   units = "in"
 )
 
@@ -112,9 +112,9 @@ data_as_inclusicve|>
   theme_bw()+
   theme(
     axis.title = element_text(colour = "#000000",
-                              size = 18),
+                              size = 22),
     axis.text = element_text(colour = "#000000",
-                             size = 14),
+                             size = 18),
     text = element_text(family = "EB Garamond")
   ) -> fig_2
 
@@ -123,8 +123,8 @@ ggsave(
   filename = paste0(Sys.Date(),"-figure2-Shared prosperity premiums and inclusivity premiums across 25 countries.jpeg"),
   device = "jpeg",
   path = here("charts/"),
-  width = 12,
-  height = 8,
+  width =6,
+  height = 4,
   units = "in"
 )
 
@@ -164,9 +164,9 @@ data_as_inclusicve|>
   theme_bw()+
   theme(
     axis.title = element_text(colour = "#000000",
-                              size = 18),
+                              size = 22),
     axis.text = element_text(colour = "#000000",
-                             size = 14),
+                             size = 18),
     text = element_text(family = "EB Garamond")
   ) -> fig_3
 
@@ -175,8 +175,8 @@ ggsave(
   filename = paste0(Sys.Date(),"-figure3-Inclusivity premiums and absolute changes in the MPIs across countries.jpeg"),
   device = "jpeg",
   path = here("charts/"),
-  width = 12,
-  height = 8,
+  width = 6,
+  height = 4,
   units = "in"
 )
 
