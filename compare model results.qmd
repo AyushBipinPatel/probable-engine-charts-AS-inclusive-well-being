@@ -1,0 +1,320 @@
+---
+title: "Check and compare model results"
+author: "Ayush"
+format: pdf
+---
+
+In our previous conversation, Suman pointed out that the trendlines of the charts in the word document and the charts that I have generated are not identical. I checked, this is a correct observation. This means that the results of the model that I run is different than what Suman has generated. I am sharing the models for every figure so that Suman can compare mu results and see where I have gone wrong.
+
+```{r include=FALSE}
+
+# libraries ---------------------------------------------------------------
+
+library(here)
+library(haven)
+library(tidyverse)
+
+# load data ---------------------------------------------------------------
+
+data_as_inclusicve <- read_dta(
+  here("data/",
+       "Alkire-Seth inclusive well-being data for graphs.dta")
+)
+
+
+
+```
+
+
+## Figure 1 - Change in Average Attainment and Inclusivity premium
+
+
+### Model 1  - Populaiton Weighted Linear Model
+
+$$
+y \sim x\beta_1 + e 
+$$
+
+$$
+x = \text{Change in space average attainment per annum}
+$$
+
+$$
+y = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod1}
+
+mod_pop_weighted_linear <- lm(data = data_as_inclusicve,
+                              formula = S_W_Sen_pa ~ d_attain_pa,
+                              weights = population)
+
+summary(mod_pop_weighted_linear)
+
+```
+
+__Coefficients__
+
+```{r mod1_add_info}
+
+mod_pop_weighted_linear$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod1_add_info1}
+mod_pop_weighted_linear$fitted.values
+```
+
+### Model 2 - Population weighted Quadratic fit
+
+
+$$
+y \sim x\beta_1 + x^2\beta_2 + e 
+$$
+
+$$
+x = \text{Change in space average attainment per annum}
+$$
+
+
+$$
+y = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod2}
+
+mod_pop_weighted_quadratic <- lm(data = data_as_inclusicve,
+                              formula = S_W_Sen_pa ~ d_attain_pa + I(d_attain_pa^2),
+                              weights = population)
+
+summary(mod_pop_weighted_quadratic)
+
+```
+
+__Coefficients__
+
+```{r mod2_add_info}
+
+mod_pop_weighted_quadratic$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod2_add_info1}
+mod_pop_weighted_quadratic$fitted.values
+```
+
+
+
+### Model 3  - Unweighted Quadratic fit
+
+
+$$
+y \sim x\beta_1 + x^2\beta_2 + e 
+$$
+
+
+$$
+x = \text{Change in space average attainment per annum}
+$$
+
+
+$$
+y = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod3}
+
+mod_pop_unweighted_quadratic <- lm(
+  data = data_as_inclusicve,
+  formula = S_W_Sen_pa ~ d_attain_pa + I(d_attain_pa^2))
+
+summary(mod_pop_unweighted_quadratic)
+
+```
+
+__Coefficients__
+
+```{r mod3_add_info}
+
+mod_pop_unweighted_quadratic$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod3_add_info1}
+mod_pop_unweighted_quadratic$fitted.values
+```
+
+
+## Figure 2 - Shared prosperity premiums and inclusivity premiums across 25 countries
+
+### Model 1 - Population weighted quadratic fit
+
+$$
+y \sim x\beta_1 + x^2\beta_2 + e 
+$$
+
+$$
+y = \text{Shared Prosperity premium}
+$$
+
+
+$$
+x = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod4}
+
+mod_pop_weighted_quadratic <- lm(data = data_as_inclusicve,
+                              formula = inc_shr_pre ~ S_W_Sen_pa + I(S_W_Sen_pa^2),
+                              weights = population)
+
+summary(mod_pop_weighted_quadratic)
+
+```
+
+__Coefficients__
+
+```{r mod4_add_info}
+
+mod_pop_weighted_quadratic$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod4_add_info1}
+mod_pop_weighted_quadratic$fitted.values
+```
+
+
+
+### Model 2 - Unweighted quadratic fit
+
+
+$$
+y \sim x\beta_1 + x^2\beta_2 + e 
+$$
+
+
+$$
+y = \text{Shared Prosperity premium}
+$$
+
+
+$$
+x = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod5}
+
+mod_pop_unweighted_quadratic <- lm(data = data_as_inclusicve,
+                              formula = inc_shr_pre ~ S_W_Sen_pa + I(S_W_Sen_pa^2))
+
+summary(mod_pop_unweighted_quadratic)
+
+```
+
+__Coefficients__
+
+```{r mod5_add_info}
+
+mod_pop_unweighted_quadratic$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod5_add_info1}
+mod_pop_unweighted_quadratic$fitted.values
+```
+
+
+## Figure 3 - Inclusivity premiums and absolute changes in the MPIs
+
+### Model 1 - Population weighted quadratic fit
+
+
+
+$$
+y \sim x\beta_1 + x^2\beta_2 + e 
+$$
+
+$$
+y = \text{Absolute change per annum in M0}
+$$
+
+
+$$
+x = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod6}
+
+mod_pop_weighted_quadratic <- lm(data = data_as_inclusicve,
+                              formula = abs_M0_33_pa ~ S_W_Sen_pa + I(S_W_Sen_pa^2),
+                              weights = population)
+
+summary(mod_pop_weighted_quadratic)
+
+```
+
+__Coefficients__
+
+```{r mod6_add_info}
+
+mod_pop_weighted_quadratic$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod6_add_info1}
+mod_pop_weighted_quadratic$fitted.values
+```
+
+
+
+### Model 2 - Unweighted quadratic fit
+
+$$
+y \sim x\beta_1 + x^2\beta_2 + e 
+$$
+
+
+$$
+y = \text{Absolute change per annum in M0}
+$$
+
+
+$$
+x = \text{Inclusivity premium W\_Sen per annum}
+$$
+
+```{r mod7}
+
+mod_pop_unweighted_quadratic <- lm(data = data_as_inclusicve,
+                              formula = abs_M0_33_pa ~ S_W_Sen_pa + I(S_W_Sen_pa^2))
+
+summary(mod_pop_unweighted_quadratic)
+
+```
+
+__Coefficients__
+
+```{r mod7_add_info}
+
+mod_pop_unweighted_quadratic$coefficients
+
+```
+
+__Fitted Values__
+
+```{r mod7_add_info1}
+mod_pop_unweighted_quadratic$fitted.values
+```
