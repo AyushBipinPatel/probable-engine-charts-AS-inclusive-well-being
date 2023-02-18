@@ -61,7 +61,8 @@ data_as_inclusicve|>
     axis.title = element_text(colour = "#000000",
                               size = 18),
     axis.text = element_text(colour = "#000000",
-                             size = 14)
+                             size = 14),
+    text = element_text(family = "EB Garamond")
   )-> fig_1
 
 ggsave(
@@ -174,4 +175,5 @@ ggsave(
   height = 8,
   units = "in"
 )
+
 
