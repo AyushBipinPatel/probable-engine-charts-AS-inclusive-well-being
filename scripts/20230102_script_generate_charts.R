@@ -74,7 +74,7 @@ ggsave(
 # Figure  2: Shared prosperity premiums and inclusivity premiums across 25 countries --------
 
 data_as_inclusicve_tl|>
-  filter(!is.na(inc_shr_pre))|> 
+  filter(x == 1)|>
   ggplot(aes(S_W_Sen_pa,inc_shr_pre))+
   geom_point(
     shape = 1,
@@ -89,11 +89,11 @@ data_as_inclusicve_tl|>
     y = "Shared propensity premium (SPP) per annum",
     x = "Inclusivity premium per annum"
   )+
-  geom_line(aes(y = Fig2_solid_black),
+  geom_line(aes(x = y,y = Fig2_solid_black),
             size = 0.3,
             colour = "#000000"
   )+
-  geom_line(aes(y = Fig2_solid_gray),
+  geom_line(aes(x = y, y = Fig2_solid_gray),
             size = 0.3,
             colour = "#898999"
   )+
