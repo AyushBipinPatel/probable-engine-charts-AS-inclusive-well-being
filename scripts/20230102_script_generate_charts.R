@@ -89,11 +89,13 @@ data_as_inclusicve_tl|>
     y = "Shared propensity premium (SPP) per annum",
     x = "Inclusivity premium per annum"
   )+
-  geom_line(aes(x = y,y = Fig2_solid_black),
+  geom_line(data = data_as_inclusicve_tl,
+            aes(x = y,y = Fig2_solid_black),
             size = 0.3,
             colour = "#000000"
   )+
-  geom_line(aes(x = y, y = Fig2_solid_gray),
+  geom_line(data = data_as_inclusicve_tl,
+            aes(x = y, y = Fig2_solid_gray),
             size = 0.3,
             colour = "#898999"
   )+
