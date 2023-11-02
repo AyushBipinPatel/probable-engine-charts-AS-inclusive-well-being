@@ -192,11 +192,14 @@ data_as_inclusicve_tl|>
     size = 1.5,
     aes(
       shape = rank_well_off,
-      colour = ifelse(rank_well_off == "25 mid well-off countries",
-                      "#999999","#000000")
+      colour = rank_well_off
       )
     )+
-  scale_colour_identity()+
+  scale_colour_manual(name = NULL,
+                      values = c("#000000",
+                                 "#999999",
+                                 "#000000")
+                      )+
   scale_shape_discrete(name = NULL)+
   scale_y_continuous(breaks = seq(from = -1,
                                   by = 1,
@@ -229,7 +232,7 @@ data_as_inclusicve_tl|>
     axis.text = element_text(colour = "#000000",
                              size = 21),
     legend.text = element_text(colour = "#000000",
-                               size = 18),
+                               size = 22),
     legend.title = NULL,
     legend.direction = "horizontal",
     legend.position = "bottom",
